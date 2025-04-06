@@ -1,9 +1,68 @@
-﻿@{
+﻿@* 
+ *@
+
+
+@{
+  //  ViewData["Title"] = "Home Page";
+}
+
+@* 
+
+<div class="home-container text-center">
+    <h1 class="display-3 welcome-text">Welcome to Our Website!</h1>
+
+    <p class="lead">Discover the power of <strong>ASP.NET Core</strong> for building web applications.</p>
+
+    <p class="hover-message">Hover over the navigation bar to see the effect!</p>
+
+    <a href="https://learn.microsoft.com/aspnet/core" class="btn btn-primary btn-lg">
+        Learn More
+    </a>
+</div>
+
+
+*@
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="home-container text-center">
+    <h1 class="display-3 welcome-text">Welcome to Our Website!</h1>
 
+    <p class="lead">Create your Very Own<strong> EventEase</strong> for Making Your Event.</p>
+
+    <p class="hover-message">Hover over the navigation bar to see the effect!</p>
+
+
+   @*  <a href="https://learn.microsoft.com/aspnet/core" class="btn btn-primary btn-lg">
+        Learn More
+    </a> *@
+    <a asp-controller="Bookings" asp-action="Index" class="btn btn-primary btn-lg">
+        Go to Bookings
+    </a>
 </div>
+
+<!-- About Us Section -->
+<div class="about-us-container text-center">
+    <h2 class="about-title">About Us</h2>
+    <p class="about-text">
+        We are passionate about delivering at top-notch experience for our users. Our platform is designed to make event management easy and efficient. It can be many events 
+        and venues, and we are here to help you every step of the way, such as weddings, festivals , and corporate events.
+    </p>
+</div>
+
+@* 
+        Title: Changed layout deign of the website homepage
+        Author: OpenAI (Provided by ChatGPT)
+        Date: 25 March 2025
+        Code cersion: 1
+        Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
+  *@
+
+
+
+
+
+
+

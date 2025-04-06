@@ -48,8 +48,8 @@ namespace EventEaseCloud.Controllers
         // GET: Bookings/Create
         public IActionResult Create()
         {
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
-            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId");
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName");
+            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueName");
             return View();
         }
 
@@ -84,8 +84,8 @@ namespace EventEaseCloud.Controllers
             {
                 return NotFound();
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId", booking.EventId);
-            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId", booking.VenueId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", booking.EventId);
+            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueName", booking.VenueId);
             return View(booking);
         }
 

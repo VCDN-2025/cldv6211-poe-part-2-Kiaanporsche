@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EventEaseCloud.Models.Event>
+﻿@* @model IEnumerable<EventEaseCloud.Models.Event>
 
 @{
     ViewData["Title"] = "Index";
@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Venue.VenueId)
+                @Html.DisplayFor(modelItem => item.Venue.VenueName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
@@ -51,3 +51,46 @@
 }
     </tbody>
 </table>
+ *@
+ @model IEnumerable<EventEaseCloud.Models.Event>
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<h1 class="text-center mb-4">Events</h1>
+
+<p class="text-center">
+    <a asp-action="Create" class="btn btn-primary">Create New Event</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.EventName)</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.EventDate)</h6>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                        <p><strong>Venue:</strong> @Html.DisplayFor(modelItem => item.Venue.VenueName)</p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Edit" asp-route-id="@item.EventId" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-sm btn-info">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.EventId" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@* 
+        Title: Changed layout page for index
+        Author: OpenAI (Provided by ChatGPT)
+        Date: 25 March 2025
+        Code cersion: 1
+        Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
+ *@

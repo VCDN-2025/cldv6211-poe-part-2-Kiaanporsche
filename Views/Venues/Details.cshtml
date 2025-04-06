@@ -1,4 +1,4 @@
-﻿@model EventEaseCloud.Models.Venue
+﻿@* @model EventEaseCloud.Models.Venue
 
 @{
     ViewData["Title"] = "Details";
@@ -11,7 +11,7 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VenueName)
+            Venue Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.VenueName)
@@ -29,7 +29,7 @@
             @Html.DisplayFor(model => model.Capacity)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
+            Image
         </dt>
         <dd class = "col-sm-10">
             <img src="@Model.ImageUrl" alt="Image" class = "width="211" height="144"" />
@@ -39,4 +39,55 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.VenueId">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div> *@
+@model EventEaseCloud.Models.Venue
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Venue</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Venue Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VenueName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Capacity)
+        </dd>
+        <dt class="col-sm-2">
+            Image
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.ImageUrl" alt="Image" width="211" height="144" />
+        </dd>
+    </dl>
 </div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.VenueId" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+   
+</div>
+@* 
+        Title: Changed links to buttons
+        Author: OpenAI (Provided by ChatGPT)
+        Date: 25 March 2025
+        Code cersion: 1
+        Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
+ *@

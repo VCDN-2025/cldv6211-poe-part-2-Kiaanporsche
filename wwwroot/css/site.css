@@ -8,24 +8,159 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+
+
+/*body {
+    background: #1e3c72;  Solid Blue Background 
+    color: white;
+    margin-bottom: 60px;
+}*/
+
+/* Home Page Container */
+/*.home-container {
+    background: rgba(255, 255, 255, 0.1);*/ /* Semi-transparent white */
+    /*padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 800px;
+    margin: 80px auto;
+}*/
+
+/* Welcome Text */
+/*.welcome-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffcc00;*/ /* Gold color for contrast */
+/*}*/
+
+/* Lead Text */
+/*.lead {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #f8f9fa;
+}*/
+
+/* Button Styling */
+/*.btn-primary {
+    background-color: #ffcc00;*/ /* Gold */
+    /*border-color: #ffcc00;
+    color: black;
+    font-weight: 600;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
+    .btn-primary:hover {
+        background-color: #ff9900;*/ /* Darker Gold */
+        /*border-color: #ff9900;
+    }*/
 
+/* Navbar Styling */
+/*.navbar {
+    background: #142850;*/ /* Darker Blue for contrast */
+    /*padding: 10px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}*/
+
+    /* Navbar Tabs */
+    /*.navbar .nav-link {
+        color: white !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .navbar .nav-link:hover {
+            color: #ffcc00 !important;*/ /* Gold hover effect */
+        /*}*/
+
+/* Footer */
+/*footer {
+    background: rgba(0, 0, 0, 0.5);
+    color: #f8f9fa;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+
+
+
+
+
+
+}*/
 body {
-  margin-bottom: 60px;
+    background: #1e3c72; /* Solid Blue Background */
+    color: #f0f0f0; /* Light Gray for Better Readability */
+    margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Home Page Container */
+.home-container {
+    background: rgba(255, 255, 255, 0.15); /* Slightly More Opaque White */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 800px;
+    margin: 80px auto;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* Welcome Text */
+.welcome-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffdd57; /* Bright Yellow for Visibility */
+}
+
+/* Lead Text */
+.lead {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #e0e0e0; /* Lighter Gray */
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #ffcc00; /* Gold */
+    border-color: #ffcc00;
+    color: #333; /* Dark Gray for Contrast */
+    font-weight: 600;
+}
+
+    .btn-primary:hover {
+        background-color: #ff9900; /* Darker Gold */
+        border-color: #ff9900;
+    }
+
+/* Navbar Styling */
+.navbar {
+    background: #142850; /* Darker Blue */
+    padding: 10px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+    /* Navbar Links */
+    .navbar .nav-link {
+        color: #f8f9fa !important; /* Light Gray */
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .navbar .nav-link:hover {
+            color: #ffcc00 !important; /* Gold */
+        }
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.5);
+    color: #f8f9fa;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+
+    /* Title: Changed layout deign of the website homepage
+        Author: OpenAI (Provided by ChatGPT)
+        Date: 25 March 2025
+        Code cersion: 1
+        Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
+ */
 }

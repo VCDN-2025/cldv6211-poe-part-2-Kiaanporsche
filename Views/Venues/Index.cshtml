@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EventEaseCloud.Models.Venue>
+﻿@* @model IEnumerable<EventEaseCloud.Models.Venue>
 
 @{
     ViewData["Title"] = "Index";
@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Capacity)
             </td>
             <td>
-                <img src="@item.ImageUrl" alt="Image" width="211" height="144" />
+                    <img src="@item.ImageUrl" alt="Image" width="211" height="144" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.VenueId">Edit</a> |
@@ -51,3 +51,50 @@
 }
     </tbody>
 </table>
+ *@
+ @model IEnumerable<EventEaseCloud.Models.Venue>
+
+@{
+    ViewData["Title"] = "Venues";
+}
+
+<h1 class="text-center mb-4">Venues</h1>
+
+<p class="text-center">
+    <a asp-action="Create" class="btn btn-primary">Create New Venue</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" class="card-img-top" alt="Venue Image" style="height: 200px; object-fit: cover;">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.VenueName)</h5>
+                        <p class="card-text"><strong>Location:</strong> @Html.DisplayFor(modelItem => item.Location)</p>
+                        <p class="card-text"><strong>Capacity:</strong> @Html.DisplayFor(modelItem => item.Capacity)</p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Edit" asp-route-id="@item.VenueId" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.VenueId" class="btn btn-sm btn-info">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.VenueId" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@* 
+        Title: Changed layout page for index
+        Author: OpenAI (Provided by ChatGPT)
+        Date: 25 March 2025
+        Code cersion: 1
+        Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+         
+ *@

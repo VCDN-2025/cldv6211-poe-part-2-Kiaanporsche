@@ -13,10 +13,21 @@ namespace EventEaseCloud.Controllers
     {
         private readonly EventEaseWebContext _context;
 
-        public VenuesController(EventEaseWebContext context)
+       
+        private readonly Services.BlobStorageService _blobStorageService;
+
+        public VenuesController(EventEaseWebContext context, Services.BlobStorageService blobStorageService)
         {
             _context = context;
+            _blobStorageService = blobStorageService;
         }
+
+
+
+       /* public VenuesController(EventEaseWebContext context)
+        {
+            _context = context;
+        }*/
 
         // GET: Venues
         public async Task<IActionResult> Index()
@@ -48,19 +59,29 @@ namespace EventEaseCloud.Controllers
             return View();
         }
 
-        // POST: Venues/Create
+        // POST: Venue/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VenueId,VenueName,Location,Capacity,ImageUrl")] Venue venue)
+        public async Task<IActionResult> Create(Venue venue, IFormFile imageFile)
         {
-            if (ModelState.IsValid)
+            if (imageFile != null && imageFile.Length > 0)
             {
+                using (var stream = imageFile.OpenReadStream())
+                {
+                    venue.ImageUrl = await _blobStorageService.UploadFileAsync(stream, imageFile.FileName);
+                }
+
                 _context.Add(venue);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                ModelState.AddModelError("ImageUrl", "Image is required.");
+            }
+
             return View(venue);
         }
 

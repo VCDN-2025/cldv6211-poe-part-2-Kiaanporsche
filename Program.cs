@@ -1,5 +1,8 @@
 using EventEaseCloud.Models;
+using EventEaseCloud.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
+using static EventEaseCloud.Services.BlobStorageService;
 
 namespace EventEaseCloud
 {
@@ -15,6 +18,12 @@ namespace EventEaseCloud
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddSingleton<BlobStorageService>();
+            builder.Services.AddAzureClients(clientBuilder =>
+            {
+                clientBuilder.AddBlobServiceClient(builder.Configuration["StorageConnection:blobServiceUri"]!).WithName("StorageConnection");
+            });
 
             var app = builder.Build();
 

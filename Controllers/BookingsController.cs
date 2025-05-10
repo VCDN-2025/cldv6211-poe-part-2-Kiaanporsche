@@ -19,10 +19,39 @@ namespace EventEaseCloud.Controllers
         }
 
         // GET: Bookings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchQuery, string sortBy)
         {
-            var eventEaseWebContext = _context.Bookings.Include(b => b.Event).Include(b => b.Venue);
-            return View(await eventEaseWebContext.ToListAsync());
+            var bookings = _context.Bookings
+                .Include(b => b.Event)
+                .Include(b => b.Venue)
+                .AsQueryable();
+
+            // Filter by searchQuery
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                bookings = bookings.Where(b =>
+                    b.Event.EventName.Contains(searchQuery) ||
+                    b.Venue.VenueName.Contains(searchQuery));
+            }
+
+            // Sorting
+            switch (sortBy)
+            {
+                case "name_asc":
+                    bookings = bookings.OrderBy(b => b.Event.EventName);
+                    break;
+                case "name_desc":
+                    bookings = bookings.OrderByDescending(b => b.Event.EventName);
+                    break;
+                case "date_asc":
+                    bookings = bookings.OrderBy(b => b.BookingDate);
+                    break;
+                case "date_desc":
+                    bookings = bookings.OrderByDescending(b => b.BookingDate);
+                    break;
+            }
+
+            return View(await bookings.ToListAsync());
         }
 
         // GET: Bookings/Details/5
@@ -60,6 +89,21 @@ namespace EventEaseCloud.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingId,BookingDate,EventId,VenueId")] Booking booking)
         {
+
+
+            bool isDoubleBooked = _context.Bookings.Any(b =>
+           b.VenueId == booking.VenueId &&
+           EF.Functions.DateDiffDay(b.BookingDate, booking.BookingDate) == 0 &&
+           b.BookingId != booking.BookingId);
+
+            if (isDoubleBooked)
+            {
+                ModelState.AddModelError("", "This venue is already booked on the selected date.");
+            }
+
+
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(booking);
@@ -96,6 +140,18 @@ namespace EventEaseCloud.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BookingId,BookingDate,EventId,VenueId")] Booking booking)
         {
+
+
+
+            bool isDoubleBooked = _context.Bookings.Any(b =>
+            b.VenueId == booking.VenueId &&
+            EF.Functions.DateDiffDay(b.BookingDate, booking.BookingDate) == 0 &&
+            b.BookingId != booking.BookingId);
+
+            if (isDoubleBooked)
+            {
+                ModelState.AddModelError("", "This venue is already booked on the selected date.");
+            }
             if (id != booking.BookingId)
             {
                 return NotFound();

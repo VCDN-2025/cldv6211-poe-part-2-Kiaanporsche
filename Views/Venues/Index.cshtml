@@ -1,4 +1,4 @@
-﻿@* @model IEnumerable<EventEaseCloud.Models.Venue>
+﻿@* @* @* @model IEnumerable<EventEaseCloud.Models.Venue>
 
 @{
     ViewData["Title"] = "Index";
@@ -51,7 +51,7 @@
 }
     </tbody>
 </table>
- *@
+@* @*  *@
  @model IEnumerable<EventEaseCloud.Models.Venue>
 
 @{
@@ -63,6 +63,41 @@
 <p class="text-center">
     <a asp-action="Create" class="btn btn-primary">Create New Venue</a>
 </p>
+
+
+<!-- Search & Filter Bar -->
+<form asp-action="Index" method="get" class="mb-4 d-flex flex-wrap" style="gap: 10px;">
+    <input type="text" name="searchQuery" placeholder="Search Venue Name or Location"
+           value="@Context.Request.Query["searchQuery"]"
+           style="flex: 1; min-width: 250px; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;" />
+
+    <select name="sortBy"
+            style="padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;">
+        <option value="">Sort By</option>
+        <option value="name_asc" selected="@("name_asc" == Context.Request.Query["sortBy"])">Name ↑</option>
+        <option value="name_desc" selected="@("name_desc" == Context.Request.Query["sortBy"])">Name ↓</option>
+        <option value="location_asc" selected="@("location_asc" == Context.Request.Query["sortBy"])">Location ↑</option>
+        <option value="location_desc" selected="@("location_desc" == Context.Request.Query["sortBy"])">Location ↓</option>
+    </select>
+
+    <button type="submit"
+            style="background-color: #3A3960; color: white; padding: 12px 20px; font-size: 16px; border: none; border-radius: 8px;">
+        Search
+    </button>
+
+    <a asp-action="Index"
+       style="background-color: #6c757d; color: white; padding: 12px 20px; font-size: 16px; border: none; border-radius: 8px; text-decoration: none;">
+        Reset
+    </a>
+</form>
+
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+
 
 <div class="container">
     <div class="row">
@@ -89,7 +124,7 @@
         }
     </div>
 </div>
-
+ 
 @* 
         Title: Changed layout page for index
         Author: OpenAI (Provided by ChatGPT)
@@ -97,4 +132,4 @@
         Code cersion: 1
         Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
          
- *@
+ *@ 

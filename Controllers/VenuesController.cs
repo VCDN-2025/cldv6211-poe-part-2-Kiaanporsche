@@ -24,15 +24,40 @@ namespace EventEaseCloud.Controllers
 
 
 
-       /* public VenuesController(EventEaseWebContext context)
-        {
-            _context = context;
-        }*/
+        /* public VenuesController(EventEaseWebContext context)
+         {
+             _context = context;
+         }*/
 
         // GET: Venues
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchQuery, string sortBy)
         {
-            return View(await _context.Venues.ToListAsync());
+            var venues = _context.Venues.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                venues = venues.Where(v =>
+                    v.VenueName.Contains(searchQuery) ||
+                    v.Location.Contains(searchQuery));
+            }
+
+            switch (sortBy)
+            {
+                case "name_asc":
+                    venues = venues.OrderBy(v => v.VenueName);
+                    break;
+                case "name_desc":
+                    venues = venues.OrderByDescending(v => v.VenueName);
+                    break;
+                case "location_asc":
+                    venues = venues.OrderBy(v => v.Location);
+                    break;
+                case "location_desc":
+                    venues = venues.OrderByDescending(v => v.Location);
+                    break;
+            }
+
+            return View(await venues.ToListAsync());
         }
 
         // GET: Venues/Details/5
@@ -159,6 +184,16 @@ namespace EventEaseCloud.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
+
+
+            bool hasBookings = _context.Bookings.Any(b => b.VenueId == id);
+            if (hasBookings)
+            {
+                TempData["Error"] = "Cannot delete this venue because it has active bookings.";
+                return RedirectToAction(nameof(Index));
+            }
+
             var venue = await _context.Venues.FindAsync(id);
             if (venue != null)
             {

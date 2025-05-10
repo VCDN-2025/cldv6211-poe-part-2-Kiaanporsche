@@ -26,10 +26,23 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+<form asp-action="Index" method="get" class="mb-4 d-flex flex-wrap justify-content-center" style="gap: 10px;">
+    <input type="text" name="searchQuery" placeholder="Search events, venues, bookings..."
+           value="@Context.Request.Query["searchQuery"]"
+           style="flex: 1; min-width: 300px; padding: 12px; font-size: 18px; border-radius: 8px; border: 1px solid #ccc;" />
+
+    <button type="submit"
+            style="background-color: #3A3960; color: white; padding: 12px 24px; font-size: 18px; border: none; border-radius: 8px;">
+        Search
+    </button>
+</form>
+
+
 <div class="home-container text-center">
     <h1 class="display-3 welcome-text">Welcome to Our Website!</h1>
 
-    <img src="eventeaseapp.blob.core.windows.net/new-images/money2.png" />
+   
 
     <p class="lead">Create your Very Own<strong> EventEase</strong> for Making Your Event.</p>
 
@@ -52,6 +65,50 @@
         and venues, and we are here to help you every step of the way, such as weddings, festivals , and corporate events.
     </p>
 </div>
+
+
+@if (ViewBag.Events != null || ViewBag.Venues != null || ViewBag.Bookings != null)
+{
+    <div class="search-results">
+        <h2>Search Results</h2>
+
+        @if (((List<Event>)ViewBag.Events).Any())
+        {
+            <h4>Events</h4>
+            <ul>
+                @foreach (var ev in (List<Event>)ViewBag.Events)
+                {
+                    <li>@ev.EventName - @ev.EventDate.ToShortDateString()</li>
+                }
+            </ul>
+        }
+
+        @if (((List<Venue>)ViewBag.Venues).Any())
+        {
+            <h4>Venues</h4>
+            <ul>
+                @foreach (var v in (List<Venue>)ViewBag.Venues)
+                {
+                    <li>@v.VenueName - @v.Location</li>
+                }
+            </ul>
+        }
+
+        @if (((List<Booking>)ViewBag.Bookings).Any())
+        {
+            <h4>Bookings</h4>
+            <ul>
+                @foreach (var b in (List<Booking>)ViewBag.Bookings)
+                {
+                    <li>Booking @b.BookingId - @b.Event.EventName at @b.Venue.VenueName</li>
+                }
+            </ul>
+        }
+    </div>
+}
+
+
+
 
 @* 
         Title: Changed layout deign of the website homepage

@@ -64,6 +64,42 @@
     <a asp-action="Create" class="btn btn-primary">Create New Event</a>
 </p>
 
+
+
+
+
+
+<form asp-action="Index" method="get" class="mb-4 d-flex flex-wrap" style="gap: 10px;">
+    <input type="text" name="searchQuery" placeholder="Search Event Name or Description"
+           value="@Context.Request.Query["searchQuery"]"
+           style="flex: 1; min-width: 250px; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;" />
+
+    <select name="sortBy"
+            style="padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;">
+        <option value="">Sort By</option>
+        <option value="name_asc" selected="@("name_asc" == Context.Request.Query["sortBy"])">Name ↑</option>
+        <option value="name_desc" selected="@("name_desc" == Context.Request.Query["sortBy"])">Name ↓</option>
+        <option value="date_asc" selected="@("date_asc" == Context.Request.Query["sortBy"])">Date ↑</option>
+        <option value="date_desc" selected="@("date_desc" == Context.Request.Query["sortBy"])">Date ↓</option>
+    </select>
+
+    <button type="submit"
+            style="background-color: #3A3960; color: white; padding: 12px 20px; font-size: 16px; border: none; border-radius: 8px;">
+        Search
+    </button>
+
+    <a asp-action="Index"
+       style="background-color: #6c757d; color: white; padding: 12px 20px; font-size: 16px; border: none; border-radius: 8px; text-decoration: none;">
+        Reset
+    </a>
+</form>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+
 <div class="container">
     <div class="row">
         @foreach (var item in Model)

@@ -58,6 +58,36 @@
     <a asp-action="Create" class="btn btn-primary">Create New Booking</a>
 </p>
 
+<form asp-action="Index" method="get" class="mb-4 d-flex flex-wrap" style="gap: 10px;">
+    <input type="text" name="searchQuery" placeholder="Search name or description"
+           value="@Context.Request.Query["searchQuery"]"
+           style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-right: 10px;" />
+
+    <input type="date" name="searchDate"
+           value="@Context.Request.Query["searchDate"]"
+           style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-right: 10px;" />
+
+    <select name="sortBy"
+            style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-right: 10px;">
+        <option value="name_asc" selected="@("name_asc" == Context.Request.Query["sortBy"])">Name (A-Z)</option>
+        <option value="name_desc" selected="@("name_desc" == Context.Request.Query["sortBy"])">Name (Z-A)</option>
+        <option value="date_asc" selected="@("date_asc" == Context.Request.Query["sortBy"])">Date (Oldest First)</option>
+        <option value="date_desc" selected="@("date_desc" == Context.Request.Query["sortBy"])">Date (Newest First)</option>
+       
+    </select>
+
+    <button type="submit"
+            style="background-color: #3A3960; color: white; padding: 8px 16px; border: none; border-radius: 5px;">
+        Search
+    </button>
+
+    <a asp-action="Index"
+       style="background-color: #6c757d; color: white; padding: 8px 16px; border: none; border-radius: 5px; text-decoration: none;">
+        Reset
+    </a>
+</form>
+
+
 <div class="container">
     <div class="row">
         @foreach (var item in Model)

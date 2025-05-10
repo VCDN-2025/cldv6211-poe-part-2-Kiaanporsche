@@ -19,10 +19,34 @@ namespace EventEaseCloud.Controllers
         }
 
         // GET: Events
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchQuery, string sortBy)
         {
-            var eventEaseWebContext = _context.Events.Include(e => e.Venue);
-            return View(await eventEaseWebContext.ToListAsync());
+            var events = _context.Events.Include(e => e.Venue).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                events = events.Where(e =>
+                    e.EventName.Contains(searchQuery) ||
+                    e.Description.Contains(searchQuery));
+            }
+
+            switch (sortBy)
+            {
+                case "name_asc":
+                    events = events.OrderBy(e => e.EventName);
+                    break;
+                case "name_desc":
+                    events = events.OrderByDescending(e => e.EventName);
+                    break;
+                case "date_asc":
+                    events = events.OrderBy(e => e.EventDate);
+                    break;
+                case "date_desc":
+                    events = events.OrderByDescending(e => e.EventDate);
+                    break;
+            }
+
+            return View(await events.ToListAsync());
         }
 
         // GET: Events/Details/5
@@ -66,6 +90,9 @@ namespace EventEaseCloud.Controllers
             }
             ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId", @event.VenueId);
             return View(@event);
+
+
+
         }
 
         // GET: Events/Edit/5
@@ -145,6 +172,14 @@ namespace EventEaseCloud.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
+            bool hasBookings = _context.Bookings.Any(b => b.EventId == id);
+            if (hasBookings)
+            {
+                TempData["Error"] = "Cannot delete this event because it has active bookings.";
+                return RedirectToAction(nameof(Index));
+            }
+
             var @event = await _context.Events.FindAsync(id);
             if (@event != null)
             {

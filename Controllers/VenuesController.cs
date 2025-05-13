@@ -113,6 +113,7 @@ namespace EventEaseCloud.Controllers
             {
                 ModelState.AddModelError("ImageUrl", "Image is required.");
             }
+            
 
             return View(venue);
 

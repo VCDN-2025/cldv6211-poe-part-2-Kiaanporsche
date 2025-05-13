@@ -52,6 +52,15 @@ namespace EventEaseCloud.Controllers
             }
 
             return View(await bookings.ToListAsync());
+
+
+            //Title: search function for bookings
+            //Author: Microsoft
+            //Date: 6 May 2025
+            //Code cersion: 1
+            //Availability: https://learn.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application 
+
+
         }
 
         // GET: Bookings/Details/5
@@ -113,6 +122,15 @@ namespace EventEaseCloud.Controllers
             ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId", booking.EventId);
             ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId", booking.VenueId);
             return View(booking);
+
+
+
+            //Title: validation for double bookings
+            //Author: OpenAI(Provided by ChatGPT)
+            //Date: 7 May 2025
+            //Code cersion: 1
+            //Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
         }
 
         // GET: Bookings/Edit/5
@@ -180,6 +198,15 @@ namespace EventEaseCloud.Controllers
             ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId", booking.EventId);
             ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId", booking.VenueId);
             return View(booking);
+
+
+            //Title: validation for double bookings
+            //Author: OpenAI(Provided by ChatGPT)
+            //Date: 7 May 2025
+            //Code cersion: 1
+            //Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
+
         }
 
         // GET: Bookings/Delete/5

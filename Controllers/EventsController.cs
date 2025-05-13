@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventEaseCloud.Models;
+using System.Threading.Channels;
 
 namespace EventEaseCloud.Controllers
 {
@@ -47,7 +48,16 @@ namespace EventEaseCloud.Controllers
             }
 
             return View(await events.ToListAsync());
+
+
+            //Title: Search functionality for events
+            //Author: Microsoft
+            //Date: 6 May 2025
+            //Code cersion: 1
+            //Availability: https://learn.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application 
+
         }
+
 
         // GET: Events/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -91,6 +101,11 @@ namespace EventEaseCloud.Controllers
             ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId", @event.VenueId);
             return View(@event);
 
+            //Title: validation for create in events
+            //Author: OpenAI(Provided by ChatGPT)
+            //Date: 7 May 2025
+            //Code cersion: 1
+            //Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
 
 
         }
@@ -146,6 +161,14 @@ namespace EventEaseCloud.Controllers
             }
             ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId", @event.VenueId);
             return View(@event);
+
+
+            //Title: validation for Edit in events
+            //Author: OpenAI(Provided by ChatGPT)
+            //Date: 7 May 2025
+            //Code cersion: 1
+            //Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
         }
 
         // GET: Events/Delete/5

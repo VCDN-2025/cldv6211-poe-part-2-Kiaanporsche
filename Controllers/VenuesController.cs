@@ -58,6 +58,13 @@ namespace EventEaseCloud.Controllers
             }
 
             return View(await venues.ToListAsync());
+
+            //Title: Search Function for Venues
+            //Author: Microsoft
+            //Date: 6 May 2025
+            //Code cersion: 1
+            //Availability: https://learn.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application 
+
         }
 
         // GET: Venues/Details/5
@@ -108,6 +115,14 @@ namespace EventEaseCloud.Controllers
             }
 
             return View(venue);
+
+
+            //Title: validation for create in Venue
+            //Author: OpenAI(Provided by ChatGPT)
+            //Date: 9 May 2025
+            //Code cersion: 1
+            //Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
         }
 
         // GET: Venues/Edit/5
@@ -159,6 +174,17 @@ namespace EventEaseCloud.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(venue);
+
+
+
+
+            //Title: validation for Edit in Venue
+            //Author: OpenAI(Provided by ChatGPT)
+            //Date: 9 May 2025
+            //Code cersion: 1
+            //Availability: https://chatgpt.com/share/67ed2bb2-0490-8008-ad3c-92c311934736
+
+
         }
 
         // GET: Venues/Delete/5

@@ -70,6 +70,14 @@ public class HomeController : Controller
         }
 
         return View();
+
+        //Title: Search functionality for events, venues, and bookings
+        //Author: Microsoft
+        //Date: 6 May 2025
+        //Code cersion: 1
+        //Availability: https://learn.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application 
+
+
     }
 
     public IActionResult Privacy()
